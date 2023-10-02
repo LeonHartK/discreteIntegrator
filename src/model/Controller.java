@@ -6,6 +6,7 @@ import java.util.InputMismatchException;
 
 public class Controller<K> {
     HashTable<K, Task> tableHash;
+    Cola<K> queue = new Cola<>();
 
     public Controller() {
         tableHash = new HashTable<>(100);
@@ -16,6 +17,9 @@ public class Controller<K> {
         String msg = "";
         if (tableHash.size() != tableHash.getNumOfBuckets()) {
             tableHash.put(key, task);
+            if (task.getPriority() == Priority.NOTPRIORITY) {
+                queue.enqueue(task);
+            }
             msg = "\n----> Se ha registrado existosamente la tarea <----";
         } else {
             msg = "\n----> No se pudo registrar la tarea ya que alcanzo el limite posible <----";
@@ -100,5 +104,14 @@ public class Controller<K> {
             throw new InputMismatchException("Format invalid");
         }
         return testDate;
+    }
+
+    public void notPriorityTask() {
+        if (!queue.isEmpty()) {
+            System.out.println("\n----> Tareas no prioritarias: <----\n");
+            queue.print();
+        } else {
+            System.out.println("\n----> La lista no tiene tareas no prioritarias <----");
+        }
     }
 }

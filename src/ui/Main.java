@@ -24,7 +24,7 @@ public class Main {
             opc = green.menu();
 
             green.ejecutar(opc);
-        } while (opc != 4);
+        } while (opc != 5);
     }
 
     public int menu() {
@@ -33,7 +33,7 @@ public class Main {
         System.out.println("1) Registrar tarea/recordatorio\n");
         System.out.println("2) Eliminar una tarea\n");
         System.out.println("3) Modificar una tarea\n");
-        System.out.println("4) Ver tareas prioritarias");
+        System.out.println("4) Ver tareas prioritarias\n");
 
         int n = sc.nextInt();
         sc.nextLine();
@@ -95,7 +95,18 @@ public class Main {
         } else {
             System.out.println("\n¡Opcion invalida!\n");
         }
+    }
 
+    public int seeTasks() {
+        System.out.println("\n¿Que tareas deseas ver?\n\n1)Priority\n\n2)Not priority\n");
+        int opc = sc.nextInt();
+        sc.nextLine();
+
+        return opc;
+    }
+
+    public void seeNotPriorityTask() {
+        controller.notPriorityTask();
     }
 
     public void ejecutar(int n) {
@@ -108,6 +119,17 @@ public class Main {
                 break;
             case 3:
                 modifyTask();
+                break;
+            case 4:
+                int opc = seeTasks();
+                if (opc == 1) {
+
+                } else if (opc == 2) {
+                    seeNotPriorityTask();
+                } else {
+                    System.out.println("\n¡Opcion no valida!\n");
+                }
+                break;
             default:
                 break;
         }
