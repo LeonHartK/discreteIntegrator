@@ -24,7 +24,7 @@ public class Controller<K> {
             String var = task.getTitle();
             String var2 = task.getDescription();
             Date var3 = task.getLimitDate();
-            String action = "La tarea registrada es: " + var + "\n" +
+            String action = "\nLa tarea registrada es: " + var + "\n" +
                     "Descripcion: " + var2 + "\n" +
                     "Fecha limite: " + var3;
             stack.pushAction(action);
@@ -59,7 +59,7 @@ public class Controller<K> {
                 Priority var4 = tableHash.get(delete).getPriority();
                 String action = "";
                 tableHash.remove(delete);
-                action = "La tarea eliminada es: " + var + "\n" +
+                action = "\nLa tarea eliminada es: " + var + "\n" +
                         "Descripcion: " + var2 + "\n" +
                         "Fecha limite: " + var3 + "\n" +
                         "Prioridad: " + var4;
@@ -88,7 +88,7 @@ public class Controller<K> {
                     case 1:
                         task.setTitle(value);
                         tableHash.modify(key, task);
-                        action = "La tarea modificada es: " + var + "\n" +
+                        action = "\nLa tarea modificada es: " + var + "\n" +
                                 "Descripcion: " + var2 + "\n" +
                                 "Fecha limite: " + var3 + "\n" +
                                 "Prioridad: " + var4;
@@ -98,7 +98,7 @@ public class Controller<K> {
                     case 2:
                         task.setDescription(value);
                         tableHash.modify(key, task);
-                        action = "La tarea modificada es: " + var + "\n" +
+                        action = "\nLa tarea modificada es: " + var + "\n" +
                                 "Descripcion: " + var2 + "\n" +
                                 "Fecha limite: " + var3 + "\n" +
                                 "Prioridad: " + var4;
@@ -108,7 +108,7 @@ public class Controller<K> {
                     case 3:
                         task.setLimitDate(parseo(value));
                         tableHash.modify(key, task);
-                        action = "La tarea modificada es: " + var + "\n" +
+                        action = "\nLa tarea modificada es: " + var + "\n" +
                                 "Descripcion: " + var2 + "\n" +
                                 "Fecha limite: " + var3 + "\n" +
                                 "Prioridad: " + var4;
@@ -118,7 +118,7 @@ public class Controller<K> {
                     case 4:
                         task.setPriority(getPriority(Integer.parseInt(value)));
                         tableHash.modify(key, task);
-                        action = "La tarea modificada es: " + var + "\n" +
+                        action = "\nLa tarea modificada es: " + var + "\n" +
                                 "Descripcion: " + var2 + "\n" +
                                 "Fecha limite: " + var3 + "\n" +
                                 "Prioridad: " + var4;
