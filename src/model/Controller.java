@@ -21,9 +21,13 @@ public class Controller<K> {
             if (task.getPriority() == Priority.NOTPRIORITY) {
                 queue.enqueue(task);
             }
-            stack.pushAction("La tarea registrada es: " + task.getTitle() + "\n" +
-                    "Descripcion: " + task.getDescription() + "\n" +
-                    "Fecha limite: " + task.getLimitDate(), task);
+            String var = task.getTitle();
+            String var2 = task.getDescription();
+            Date var3 = task.getLimitDate();
+            String action = "La tarea registrada es: " + var + "\n" +
+                    "Descripcion: " + var2 + "\n" +
+                    "Fecha limite: " + var3;
+            stack.pushAction(action);
             ;
             msg = "\n----> Se ha registrado existosamente la tarea <----\n\n" +
                     "La tarea registrada es: " + task.getTitle() + "\n" +
@@ -49,12 +53,18 @@ public class Controller<K> {
         String msg = "";
         if (!tableHash.isEmpty()) {
             if (tableHash.getBoolean(delete) == true) {
+                String var = tableHash.get(delete).getTitle();
+                String var2 = tableHash.get(delete).getDescription();
+                Date var3 = tableHash.get(delete).getLimitDate();
+                Priority var4 = tableHash.get(delete).getPriority();
+                String action = "";
                 tableHash.remove(delete);
-                stack.pushAction("Delete: ", tableHash.get(delete));
-                msg = "\n----> La tarea se elimino correctamente <----\n\n" +
-                        "La tarea registrada es: " + tableHash.get(delete).getTitle() + "\n" +
-                        "Descripcion: " + tableHash.get(delete).getDescription() + "\n" +
-                        "Fecha limite: " + tableHash.get(delete).getLimitDate();
+                action = "La tarea eliminada es: " + var + "\n" +
+                        "Descripcion: " + var2 + "\n" +
+                        "Fecha limite: " + var3 + "\n" +
+                        "Prioridad: " + var4;
+                stack.pushAction(action);
+                msg = "\n----> La tarea se elimino correctamente <----";
             } else {
                 msg = "\n----> No se encontro la tarea indicaste <----";
             }
@@ -69,49 +79,50 @@ public class Controller<K> {
         if (!tableHash.isEmpty()) {
             if (tableHash.getBoolean(key)) {
                 Task task = tableHash.get(key);
+                String var = task.getTitle();
+                String var2 = task.getDescription();
+                Date var3 = task.getLimitDate();
+                Priority var4 = task.getPriority();
+                String action = "";
                 switch (opc) {
                     case 1:
                         task.setTitle(value);
                         tableHash.modify(key, task);
-                        stack.pushAction(
-                                "La tarea modificada es: " + task.getTitle() + "\n" +
-                                        "Descripcion: " + task.getDescription() + "\n" +
-                                        "Fecha limite: " + task.getLimitDate() + "\n" +
-                                        "Prioridad: " + task.getPriority(),
-                                task);
+                        action = "La tarea modificada es: " + var + "\n" +
+                                "Descripcion: " + var2 + "\n" +
+                                "Fecha limite: " + var3 + "\n" +
+                                "Prioridad: " + var4;
+                        stack.pushAction(action);
                         msg = "\n----> Se ha modificado la tarea <----";
                         break;
                     case 2:
                         task.setDescription(value);
                         tableHash.modify(key, task);
-                        stack.pushAction(
-                                "La tarea modificada es: " + task.getTitle() + "\n" +
-                                        "Descripcion: " + task.getDescription() + "\n" +
-                                        "Fecha limite: " + task.getLimitDate() + "\n" +
-                                        "Prioridad: " + task.getPriority(),
-                                task);
+                        action = "La tarea modificada es: " + var + "\n" +
+                                "Descripcion: " + var2 + "\n" +
+                                "Fecha limite: " + var3 + "\n" +
+                                "Prioridad: " + var4;
+                        stack.pushAction(action);
                         msg = "\n----> Se ha modificado la tarea <----";
                         break;
                     case 3:
                         task.setLimitDate(parseo(value));
                         tableHash.modify(key, task);
-                        stack.pushAction(
-                                "La tarea modificada es: " + task.getTitle() + "\n" +
-                                        "Descripcion: " + task.getDescription() + "\n" +
-                                        "Fecha limite: " + task.getLimitDate() + "\n" +
-                                        "Prioridad: " + task.getPriority(),
-                                task);
+                        action = "La tarea modificada es: " + var + "\n" +
+                                "Descripcion: " + var2 + "\n" +
+                                "Fecha limite: " + var3 + "\n" +
+                                "Prioridad: " + var4;
+                        stack.pushAction(action);
                         msg = "\n----> Se ha modificado la tarea <----";
                         break;
                     case 4:
                         task.setPriority(getPriority(Integer.parseInt(value)));
                         tableHash.modify(key, task);
-                        stack.pushAction(
-                                "La tarea modificada es: " + task.getTitle() + "\n" +
-                                        "Descripcion: " + task.getDescription() + "\n" +
-                                        "Fecha limite: " + task.getLimitDate() + "\n" +
-                                        "Prioridad: " + task.getPriority(),
-                                task);
+                        action = "La tarea modificada es: " + var + "\n" +
+                                "Descripcion: " + var2 + "\n" +
+                                "Fecha limite: " + var3 + "\n" +
+                                "Prioridad: " + var4;
+                        stack.pushAction(action);
                         msg = "\n----> Se ha modificado la tarea <----";
                         break;
                 }
@@ -150,4 +161,22 @@ public class Controller<K> {
             System.out.println("\n----> La lista no tiene tareas no prioritarias <----");
         }
     }
+
+    public void printStack() {
+
+        if (stack.isEmpty()) {
+            return;
+        }
+
+        String x = stack.peek();
+
+        stack.pop();
+
+        System.out.print(x + "\n\n");
+
+        printStack();
+
+        stack.push(x);
+    }
+
 }

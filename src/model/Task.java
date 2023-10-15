@@ -7,6 +7,7 @@ public class Task {
     private String description;
     private Date limitDate;
     private Priority priority;
+    private String action;
 
     public Task(String title, String description, Date limitDate, Priority priority) {
         this.title = title;
@@ -46,4 +47,13 @@ public class Task {
     public void setPriority(Priority priority) {
         this.priority = priority;
     }
+
+    public String getAction() {
+        return action;
+    }
+
+    public void setAction(String action) {
+        this.action = action;
+    }
+
 }

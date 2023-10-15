@@ -24,7 +24,7 @@ public class Main {
             opc = green.menu();
 
             green.ejecutar(opc);
-        } while (opc != 5);
+        } while (opc != 6);
     }
 
     public int menu() {
@@ -34,6 +34,7 @@ public class Main {
         System.out.println("2) Eliminar una tarea\n");
         System.out.println("3) Modificar una tarea\n");
         System.out.println("4) Ver tareas \n");
+        System.out.println("5) Ver acciones\n");
 
         int n = sc.nextInt();
         sc.nextLine();
@@ -84,7 +85,8 @@ public class Main {
         int taskID = sc.nextInt();
         sc.nextLine();
 
-        System.out.println("\n¿Que deseas cambiar de la tarea?\n\n1)Title\n2)Description\n3)Limit Date\n4)Priority\n");
+        System.out.println(
+                "\n¿Que deseas cambiar de la tarea?\n\n1) Title\n2) Description\n3) Limit Date\n4) Priority\n");
         int opc = sc.nextInt();
         sc.nextLine();
 
@@ -98,7 +100,7 @@ public class Main {
     }
 
     public int seeTasks() {
-        System.out.println("\n¿Que tareas deseas ver?\n\n1)Priority\n\n2)Not priority\n");
+        System.out.println("\n¿Que tareas deseas ver?\n\n1) Priority\n\n2) Not priority\n");
         int opc = sc.nextInt();
         sc.nextLine();
 
@@ -107,6 +109,11 @@ public class Main {
 
     public void seeNotPriorityTask() {
         controller.notPriorityTask();
+    }
+
+    public void seeActions() {
+        controller.printStack();
+        ;
     }
 
     public void ejecutar(int n) {
@@ -129,6 +136,9 @@ public class Main {
                 } else {
                     System.out.println("\n¡Opcion no valida!\n");
                 }
+                break;
+            case 5:
+                seeActions();
                 break;
             default:
                 break;

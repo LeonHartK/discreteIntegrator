@@ -3,9 +3,8 @@ package model;
 import java.util.EmptyStackException;
 
 public class Stack<T> {
-    private Node<Task> top;
+    private Node<String> top;
     private int size;
-    private String action;
 
     public Stack() {
         top = null;
@@ -20,33 +19,32 @@ public class Stack<T> {
         return size == 0;
     }
 
-    public void push(Task data) {
-        Node<Task> temp = new Node<>(data);
+    public void push(String data) {
+        Node<String> temp = new Node<>(data);
         temp.setNext(top);
         top = temp;
         size++;
     }
 
-    public void pushAction(String action, Task data) {
-        Node<Task> temp = new Node<>(data);
+    public void pushAction(String data) {
+        Node<String> temp = new Node<String>(data);
         temp.setNext(top);
         top = temp;
-        this.action = action;
         size++;
     }
 
-    public Task pop() {
+    public String pop() {
         if (isEmpty()) {
             throw new EmptyStackException();
         }
 
-        Task result = top.getValue();
+        String result = top.getValue();
         top = top.getNext();
         size--;
         return result;
     }
 
-    public Task peek() {
+    public String peek() {
         if (isEmpty()) {
             throw new EmptyStackException();
         }
@@ -62,13 +60,5 @@ public class Stack<T> {
             msg += secondPila.peek();
             return reverse(pila, secondPila, msg);
         }
-    }
-
-    public String getAction() {
-        return action;
-    }
-
-    public void setAction(String action) {
-        this.action = action;
     }
 }
