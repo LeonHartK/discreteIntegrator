@@ -3,7 +3,7 @@ package model;
 import java.util.EmptyStackException;
 
 public class Stack<T> {
-    private Node<String> top;
+    public Node<String> top;
     private int size;
 
     public Stack() {
