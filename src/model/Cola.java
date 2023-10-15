@@ -53,7 +53,7 @@ public class Cola<T> {
         } else {
             int i = 1;
             while (current != null) {
-                System.out.print(i + ")" + current.getValue().getTitle() + "\n");
+                System.out.print(i + ") " + current.getValue().getTitle() + "\n");
                 current = current.getNext();
                 i++;
             }

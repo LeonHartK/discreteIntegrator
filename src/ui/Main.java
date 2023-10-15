@@ -33,7 +33,7 @@ public class Main {
         System.out.println("1) Registrar tarea/recordatorio\n");
         System.out.println("2) Eliminar una tarea\n");
         System.out.println("3) Modificar una tarea\n");
-        System.out.println("4) Ver tareas prioritarias\n");
+        System.out.println("4) Ver tareas \n");
 
         int n = sc.nextInt();
         sc.nextLine();
@@ -64,7 +64,7 @@ public class Main {
         }
 
         System.out.println(
-                "\nDigite el numero segun corresponda al nivel de prioridad de la tarea\n\n1)Priority\n2)No priority\n");
+                "\nDigite el numero segun corresponda al nivel de prioridad de la tarea\n\n1)Priority\n\n2)No priority\n");
         int priority = sc.nextInt();
         sc.nextLine();
 

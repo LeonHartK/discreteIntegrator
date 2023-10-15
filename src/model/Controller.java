@@ -7,6 +7,7 @@ import java.util.InputMismatchException;
 public class Controller<K> {
     HashTable<K, Task> tableHash;
     Cola<K> queue = new Cola<>();
+    Stack<K> stack = new Stack<>();
 
     public Controller() {
         tableHash = new HashTable<>(100);
@@ -20,7 +21,14 @@ public class Controller<K> {
             if (task.getPriority() == Priority.NOTPRIORITY) {
                 queue.enqueue(task);
             }
-            msg = "\n----> Se ha registrado existosamente la tarea <----";
+            stack.pushAction("La tarea registrada es: " + task.getTitle() + "\n" +
+                    "Descripcion: " + task.getDescription() + "\n" +
+                    "Fecha limite: " + task.getLimitDate(), task);
+            ;
+            msg = "\n----> Se ha registrado existosamente la tarea <----\n\n" +
+                    "La tarea registrada es: " + task.getTitle() + "\n" +
+                    "Descripcion: " + task.getDescription() + "\n" +
+                    "Fecha limite: " + task.getLimitDate();
         } else {
             msg = "\n----> No se pudo registrar la tarea ya que alcanzo el limite posible <----";
         }
@@ -42,7 +50,11 @@ public class Controller<K> {
         if (!tableHash.isEmpty()) {
             if (tableHash.getBoolean(delete) == true) {
                 tableHash.remove(delete);
-                msg = "\n----> La tarea se elimino correctamente <----";
+                stack.pushAction("Delete: ", tableHash.get(delete));
+                msg = "\n----> La tarea se elimino correctamente <----\n\n" +
+                        "La tarea registrada es: " + tableHash.get(delete).getTitle() + "\n" +
+                        "Descripcion: " + tableHash.get(delete).getDescription() + "\n" +
+                        "Fecha limite: " + tableHash.get(delete).getLimitDate();
             } else {
                 msg = "\n----> No se encontro la tarea indicaste <----";
             }
@@ -61,21 +73,45 @@ public class Controller<K> {
                     case 1:
                         task.setTitle(value);
                         tableHash.modify(key, task);
+                        stack.pushAction(
+                                "La tarea modificada es: " + task.getTitle() + "\n" +
+                                        "Descripcion: " + task.getDescription() + "\n" +
+                                        "Fecha limite: " + task.getLimitDate() + "\n" +
+                                        "Prioridad: " + task.getPriority(),
+                                task);
                         msg = "\n----> Se ha modificado la tarea <----";
                         break;
                     case 2:
                         task.setDescription(value);
                         tableHash.modify(key, task);
+                        stack.pushAction(
+                                "La tarea modificada es: " + task.getTitle() + "\n" +
+                                        "Descripcion: " + task.getDescription() + "\n" +
+                                        "Fecha limite: " + task.getLimitDate() + "\n" +
+                                        "Prioridad: " + task.getPriority(),
+                                task);
                         msg = "\n----> Se ha modificado la tarea <----";
                         break;
                     case 3:
                         task.setLimitDate(parseo(value));
                         tableHash.modify(key, task);
+                        stack.pushAction(
+                                "La tarea modificada es: " + task.getTitle() + "\n" +
+                                        "Descripcion: " + task.getDescription() + "\n" +
+                                        "Fecha limite: " + task.getLimitDate() + "\n" +
+                                        "Prioridad: " + task.getPriority(),
+                                task);
                         msg = "\n----> Se ha modificado la tarea <----";
                         break;
                     case 4:
                         task.setPriority(getPriority(Integer.parseInt(value)));
                         tableHash.modify(key, task);
+                        stack.pushAction(
+                                "La tarea modificada es: " + task.getTitle() + "\n" +
+                                        "Descripcion: " + task.getDescription() + "\n" +
+                                        "Fecha limite: " + task.getLimitDate() + "\n" +
+                                        "Prioridad: " + task.getPriority(),
+                                task);
                         msg = "\n----> Se ha modificado la tarea <----";
                         break;
                 }
