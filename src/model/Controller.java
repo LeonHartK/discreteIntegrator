@@ -28,11 +28,7 @@ public class Controller<K> {
                     "Descripcion: " + var2 + "\n" +
                     "Fecha limite: " + var3;
             stack.pushAction(action);
-            ;
-            msg = "\n----> Se ha registrado existosamente la tarea <----\n\n" +
-                    "La tarea registrada es: " + task.getTitle() + "\n" +
-                    "Descripcion: " + task.getDescription() + "\n" +
-                    "Fecha limite: " + task.getLimitDate();
+            msg = "\n----> Se ha registrado existosamente la tarea <----";
         } else {
             msg = "\n----> No se pudo registrar la tarea ya que alcanzo el limite posible <----";
         }
